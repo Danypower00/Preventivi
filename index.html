@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html lang="it">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preventivi App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.23/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Calcolatrice Preventivi</h1>
+  </header>
+  <main>
+    <!-- Dati Cliente -->
+    <section id="customer-section">
+      <h2>Dati Cliente</h2>
+      <form id="customer-form">
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="text" id="surname" placeholder="Cognome" required>
+        <input type="tel" id="phone" placeholder="Numero di telefono" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="address" placeholder="Indirizzo" required>
+      </form>
+    </section>
+    
+    <!-- Prodotti -->
+    <section id="product-section">
+      <h2>Prodotti</h2>
+      <div id="product-inputs">
+        <input type="text" id="product-name" placeholder="Descrizione prodotto">
+        <input type="number" id="product-quantity" placeholder="Quantità" min="1">
+        <input type="number" id="product-price" placeholder="Prezzo per unità" min="0">
+        <button id="add-product">Aggiungi Prodotto</button>
+      </div>
+      <table id="product-table">
+        <thead>
+          <tr>
+            <th>Qtà</th>
+            <th>Descrizione</th>
+            <th>Prezzo Unitario</th>
+            <th>Valore</th>
+            <th>Rimuovi</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Totale -->
+    <section id="totals-section">
+      <h2>Totale</h2>
+      <div>
+        <label for="discount">Sconto (€): </label>
+        <input type="number" id="discount" value="0">
+      </div>
+      <div id="totals">
+        <p>Subtotale: <span id="subtotal">0.00</span> €</p>
+        <p>IVA (22%): <span id="vat">0.00</span> €</p>
+        <p>Totale: <span id="total">0.00</span> €</p>
+      </div>
+      <button id="generate-pdf">Genera PDF</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="generate_pdf.js"></script>
+</body>
+</html>
