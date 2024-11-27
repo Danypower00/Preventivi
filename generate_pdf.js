@@ -59,7 +59,7 @@ document.getElementById("generate-pdf").addEventListener("click", () => {
     });
 
     doc.autoTable({
-      head: [["Qtà", "Descrizione", "Prezzo Unitario (€)", "Totale (€)"]],
+      head: [["Qtà", "Descrizione", "Prezzo Unitario ( € )", "Totale ( € )"]],
       body: products,
       startY: yStart,
       theme: "grid",
@@ -73,10 +73,10 @@ document.getElementById("generate-pdf").addEventListener("click", () => {
     yStart = doc.lastAutoTable.finalY + 10; // Posiziona dopo la tabella prodotti
 
     // Totali
-    doc.text(`Subtotale: €${document.getElementById("subtotal").textContent || "0.00"}`, 10, yStart);
-    doc.text(`IVA (22%): €${document.getElementById("vat").textContent || "0.00"}`, 10, yStart + 10);
-    doc.text(`Sconto: €${document.getElementById("discount").value || "0.00"}`, 10, yStart + 20);
-    doc.text(`Totale: €${document.getElementById("total").textContent || "0.00"}`, 10, yStart + 30);
+    doc.text(`Subtotale: € ${document.getElementById("subtotal").textContent || "0.00"}`, 10, yStart);
+    doc.text(`IVA (22%): € ${document.getElementById("vat").textContent || "0.00"}`, 10, yStart + 10);
+    doc.text(`Sconto: € ${document.getElementById("discount").value || "0.00"}`, 10, yStart + 20);
+    doc.text(`Totale: € ${document.getElementById("total").textContent || "0.00"}`, 10, yStart + 30);
 
     // Seconda linea di separazione finale (chiara)
     doc.setLineWidth(0.5);
