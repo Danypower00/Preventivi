@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     subtotalElem.textContent = subtotal.toFixed(2);
     vatElem.textContent = vat.toFixed(2);
-    totalElem.textContent = total >= 0 ? total.toFixed(2) : "0.00";
+    totalElem.textContent = total >= 0 ? total.toFixed(2) : "0.00"; // Evita totali negativi
   };
 
   const addProductToTable = (product, index) => {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${product.quantity}</td>
+      <td>${product.quantity.toFixed(2)}
       <td>${product.description}</td>
       <td>${product.price.toFixed(2)} €</td>
       <td>${(product.quantity * product.price).toFixed(2)} €</td>
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addProductButton.addEventListener("click", () => {
     const description = document.getElementById("product-name").value.trim();
-    const quantity = parseInt(document.getElementById("product-quantity").value, 10);
+    const quantity = parseFloat(document.getElementById("product-quantity").value);
     const price = parseFloat(document.getElementById("product-price").value);
 
     if (!description || isNaN(quantity) || quantity <= 0 || isNaN(price) || price <= 0) {
@@ -45,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const product = { description, quantity, price };
     products.push(product);
-    productTableBody.innerHTML = "";
-    products.forEach((prod, idx) => addProductToTable(prod, idx));
+    addProductToTable(product, products.length - 1);
     updateTotals();
 
+    // Resetta i campi
     document.getElementById("product-name").value = "";
     document.getElementById("product-quantity").value = "";
     document.getElementById("product-price").value = "";
@@ -59,21 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const index = parseInt(event.target.dataset.index, 10);
       products.splice(index, 1);
       productTableBody.innerHTML = "";
-      products.forEach((prod, idx) => addProductToTable(prod, idx));
+      products.forEach((product, idx) => addProductToTable(product, idx));
       updateTotals();
     }
   });
-  
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
-        console.log('Service Worker registrato con successo:', registration);
-      }).catch((error) => {
-        console.log('Errore nel registrare il Service Worker:', error);
-      });
-    });
-  }
-  
 
   discountInput.addEventListener("input", updateTotals);
 });
