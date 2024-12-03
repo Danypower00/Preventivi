@@ -93,7 +93,8 @@ document.getElementById("generate-pdf").addEventListener("click", () => {
     yStart += lines.length * 5; // Sposta in basso in base al numero di righe
 
     // Informazioni aziendali in basso a sinistra
-    const footerInfo = `Via XX Settembre, 12
+    const footerInfo = `Le Tende ad Arte
+Via XX Settembre, 12
 20081 Abbiategrasso (MI)
 Tel. 02.94969152
 Cell. 346.2138048
